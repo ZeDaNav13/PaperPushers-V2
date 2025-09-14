@@ -1,76 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Toolbox Studio — A playful, tactile creative toolkit</title>
-<meta name="description" content="A playful, tactile studio site: modular services, crisp case studies, and a friendly contact flow. Single‑file HTML/CSS/JS." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=General+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
---bg:#0f1115;
---panel:#141720;
---muted:#99a1b3;
---ink:#f5f5f5; /* off-white */
---accent:#D2009E; /* main */
---accent-2:#FFF53E; /* secondary */
---highlight:#77FD3E; /* highlight */
---ring: rgba(210,0,158,.35);
---radius: 18px;
---grid-gap: clamp(16px,2vw,28px);
---maxw: 1120px;
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-margin:0; color:var(--ink); background: radial-gradient(1200px 800px at 90% -10%, rgba(210,0,158,.06), transparent 60%),
-radial-gradient(900px 600px at -10% 10%, rgba(255,245,62,.06), transparent 55%),
-var(--bg);
-font: 16px/1.4 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
--webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
-}
-a{color:inherit; text-decoration:none}
-.wrap{max-width:var(--maxw); margin-inline:auto; padding: 0 20px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toolbox Studio — A playful, tactile creative toolkit</title>
+  <meta name="description" content="A playful, tactile studio site: modular services, crisp case studies, and a friendly contact flow. Single‑file HTML/CSS/JS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=General+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Brand palette */
+      --main:#D2009E;       /* requested main (background) */
+      --secondary:#FFF53E;  /* requested secondary */
+      --highlight:#77FD3E;  /* requested highlight */
+      --offwhite:#FFFDF7;   /* gentle off‑white for text */
 
+      /* App tokens derived from palette */
+      --bg: var(--main);
+      --panel: rgba(255,255,255,.10);         /* translucent card fill over main */
+      --panel-border: rgba(255,255,255,.28);
+      --muted: rgba(255,255,255,.86);
+      --ink: var(--offwhite);
+      --ring: rgba(255,245,62,.45);           /* focus ring in secondary */
+      --radius: 18px;
+      --grid-gap: clamp(16px,2vw,28px);
+      --maxw: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink);
+      /* Use main as base with playful secondary/highlight texture */
+      background:
+        radial-gradient(900px 600px at 85% -10%, rgba(255,245,62,.20), transparent 60%),
+        radial-gradient(800px 560px at -10% 10%, rgba(119,253,62,.18), transparent 55%),
+        var(--bg);
+      font: 16px/1.4 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--maxw); margin-inline:auto; padding: 0 20px}
 
-header{position:sticky; top:0; z-index:40; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(180deg, rgba(15,17,21,.9), rgba(15,17,21,.65)); border-bottom:1px solid rgba(255,255,255,.06)}
-.top{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-.brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
-.brand .dot{inline-size:10px; block-size:10px; border-radius:50%; background:conic-gradient(from 45deg, var(--accent), var(--accent-2)); box-shadow:0 0 0 6px rgba(210,0,158,.15)}
-nav ul{display:flex; gap:20px; list-style:none; margin:0; padding:0}
-nav a{opacity:.9}
-nav a:hover{opacity:1; color:var(--highlight)}
-.cta{display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1016; padding:10px 14px; border-radius:12px; font-weight:700; box-shadow:0 8px 20px rgba(210,0,158,.25)}
+    /* --- Top Bar --- */
+    header{position:sticky; top:0; z-index:40; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, color-mix(in srgb, var(--main) 92%, transparent), color-mix(in srgb, var(--main) 72%, transparent));
+      border-bottom:1px solid rgba(255,255,255,.20)}
+    .top{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .brand .dot{inline-size:10px; block-size:10px; border-radius:50%; background:conic-gradient(from 45deg, var(--secondary), var(--highlight)); box-shadow:0 0 0 6px rgba(255,255,255,.18)}
+    nav ul{display:flex; gap:20px; list-style:none; margin:0; padding:0}
+    nav a{opacity:.9}
+    nav a:hover{opacity:1; color:var(--secondary)}
+    .cta{display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, var(--secondary), var(--highlight)); color:#101015; padding:10px 14px; border-radius:12px; font-weight:800; box-shadow:0 8px 22px rgba(0,0,0,.25)}
 
+    /* --- Hero --- */
+    .hero{padding: clamp(40px, 8vw, 120px) 0 32px}
+    .hero h1{font-family:"General Sans", Inter, system-ui, sans-serif; font-weight:800; line-height:1.02; letter-spacing:-.02em; font-size:clamp(36px, 6.4vw, 84px); margin:6px 0 18px}
+    .hero p{max-width: 760px; font-size: clamp(16px, 2.2vw, 22px); color:var(--muted)}
+    .marquee{display:flex; gap:10px; flex-wrap:wrap; margin: 18px 0 28px}
+    .pill{display:inline-grid; place-items:center; padding: 10px 14px; border-radius:999px; background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06)); border:1.2px solid var(--panel-border); color:var(--ink); font-weight:700}
+    .pill:hover{transform: translateY(-2px); transition:transform .2s ease; border-color: var(--secondary)}
+    .hero-cta{display:flex; gap:12px; margin-top:16px}
+    .ghost{border:1.6px solid var(--offwhite); padding:10px 14px; border-radius:12px; font-weight:800; background: transparent}
+    .ghost:hover{border-color: var(--secondary); color: var(--secondary)}
+    .ghost:focus-visible{outline:3px solid var(--ring)}
 
-.hero{padding: clamp(40px, 8vw, 120px) 0 32px}
-.hero h1{font-family:"General Sans", Inter, system-ui, sans-serif; font-weight:800; line-height:1.02; letter-spacing:-.02em; font-size:clamp(36px, 6.4vw, 84px); margin:6px 0 18px}
-.hero p{max-width: 760px; font-size: clamp(16px, 2.2vw, 22px); color:var(--muted)}
-.pill{background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid var(--accent);}
-.pill:hover{color:var(--highlight)}
+    /* --- Sections --- */
+    .section{padding: clamp(48px, 8vw, 96px) 0}
+    .section h2{font-family:"General Sans", Inter, system-ui, sans-serif; font-weight:800; letter-spacing:-.01em; font-size: clamp(28px, 4.6vw, 54px); margin:0 0 18px}
+    .lead{color:var(--muted); font-size:18px; max-width:820px}
 
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap); margin-top:28px}
+    .card{grid-column: span 4; background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); padding: 22px; position:relative; overflow:hidden}
+    .card h3{margin:0 0 8px; font-size:22px}
+    .card p{color:var(--muted)}
+    .badge{position:absolute; top:16px; right:16px; font-size:12px; font-weight:900; letter-spacing:.06em; padding:6px 8px; border-radius:999px; background: color-mix(in srgb, var(--secondary) 24%, transparent); border:1px solid color-mix(in srgb, var(--secondary) 55%, transparent); color:#2b2b10}
+    .list{margin:14px 0 0; padding:0 0 0 18px; color:var(--muted)}
+    .card:hover{box-shadow:0 20px 60px rgba(0,0,0,.35); transform: translateY(-2px); transition:.25s ease}
 
-.card{background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid var(--accent);}
-.badge{background: rgba(210,0,158,.12); border:1px solid rgba(210,0,158,.3); color:var(--accent)}
-.card:hover{box-shadow:0 20px 60px rgba(210,0,158,.35)}
+    @media (max-width: 960px){ .card{grid-column: span 6} }
+    @media (max-width: 640px){ .card{grid-column: span 12} }
 
+    /* --- Work --- */
+    .work{display:grid; grid-template-columns:repeat(12,1fr); gap:var(--grid-gap); margin-top:28px}
+    .work-item{grid-column: span 6; background: var(--panel); border:1px solid var(--panel-border); border-radius: var(--radius); overflow:hidden}
+    .work-media{aspect-ratio: 16/10; background:linear-gradient(135deg, var(--secondary), var(--highlight)); display:grid; place-items:center; font-weight:900; color:#101015}
+    .work-body{padding:18px}
+    .work-title{display:flex; justify-content:space-between; align-items:center; font-weight:800}
+    .tag{font-size:12px; letter-spacing:.06em; background:rgba(255,255,255,.14); border:1px solid var(--panel-border); padding:6px 8px; border-radius:999px; color:var(--ink)}
+    .metrics{margin-top:8px; color:var(--muted)}
 
-.work-item{border:1px solid var(--accent)}
-.work-media{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1016}
+    /* --- About --- */
+    .about{display:grid; grid-template-columns: 1.2fr .8fr; gap:var(--grid-gap); margin-top:20px}
+    .about .panel{background: var(--panel); border:1px solid var(--panel-border); border-radius: var(--radius); padding:22px}
+    @media (max-width: 880px){ .about{grid-template-columns: 1fr} }
 
+    /* --- Contact --- */
+    form{display:grid; grid-template-columns: repeat(2,1fr); gap: var(--grid-gap); margin-top: 20px}
+    label{font-size:14px; color:var(--ink); opacity:.85}
+    input, textarea, select{width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid var(--panel-border); background: rgba(255,255,255,.10); color:var(--ink)}
+    textarea{min-height:120px}
+    .full{grid-column:1 / -1}
+    .submit{justify-self:start}
 
-.about .panel{border:1px solid var(--accent)}
+    /* --- Footer --- */
+    footer{padding:36px 0 64px; color:var(--muted)}
+    .foot{display:flex; gap:24px; flex-wrap:wrap; justify-content:space-between; align-items:flex-start}
+    .small{font-size:13px}
+    .social{display:flex; gap:14px}
 
-
-input, textarea, select{border:1px solid var(--accent);}
-.ghost{border:1.4px solid var(--accent); color:var(--accent)}
-.ghost:hover{color:var(--highlight); border-color:var(--highlight)}
-
-
-.tile{border:1px solid var(--accent)}
-</style>
+    /* --- Playful letter tiles --- */
+    .tiles{display:flex; gap:8px; margin-top:16px}
+    .tile{inline-size:44px; block-size:44px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08)); border:1px solid var(--panel-border); font-weight:900; letter-spacing:.04em; cursor:grab; user-select:none; transition: transform .15s ease}
+    .tile:active{transform:scale(.96)}
+    .tile[data-pop]{animation:pop .25s ease}
+    @keyframes pop{50%{transform:translateY(-6px)} 100%{transform:translateY(0)}}
+  </style>
 </head>
 <body>
   <header>
@@ -336,7 +382,6 @@ input, textarea, select{border:1px solid var(--accent);}
       t.addEventListener('pointerdown', e => {
         t.setPointerCapture(e.pointerId);
         const startX = e.clientX, startY = e.clientY;
-        const orig = t.getBoundingClientRect();
         const onMove = (ev)=>{
           const dx = ev.clientX - startX; const dy = ev.clientY - startY;
           t.style.transform = `translate(${dx}px, ${dy}px)`;
@@ -362,7 +407,7 @@ input, textarea, select{border:1px solid var(--accent);}
         position:'fixed', inset:'auto 20px 20px auto', padding:'12px 14px',
         background:'linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9))',
         color:'#0b1016', borderRadius:'12px', boxShadow:'0 14px 40px rgba(0,0,0,.3)', zIndex:1000,
-        fontWeight:'700'
+        fontWeight:'800'
       });
       document.body.appendChild(el);
       setTimeout(()=> el.remove(), 2400);
