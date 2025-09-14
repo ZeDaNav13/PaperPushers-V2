@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toolbox Studio — A playful, tactile creative toolkit</title>
+  <meta name="description" content="A playful, tactile studio site: modular services, crisp case studies, and a friendly contact flow. Single‑file HTML/CSS/JS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=General+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1115;           /* Deep, cozy canvas */
+      --panel:#141720;        /* Cards / panels */
+      --muted:#99a1b3;        /* Secondary text */
+      --ink:#e7ecf5;          /* Primary text */
+      --accent:#7ae3ff;       /* Playful accent */
+      --accent-2:#b6f09c;     /* Secondary accent */
+      --ring: rgba(122,227,255,.35);
+      --radius: 18px;
+      --grid-gap: clamp(16px,2vw,28px);
+      --maxw: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); background: radial-gradient(1200px 800px at 90% -10%, rgba(122,227,255,.06), transparent 60%),
+                                      radial-gradient(900px 600px at -10% 10%, rgba(182,240,156,.06), transparent 55%),
+                                      var(--bg);
+      font: 16px/1.4 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--maxw); margin-inline:auto; padding: 0 20px}
+
+    /* --- Top Bar --- */
+    header{position:sticky; top:0; z-index:40; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(180deg, rgba(15,17,21,.9), rgba(15,17,21,.65)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .top{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .brand .dot{inline-size:10px; block-size:10px; border-radius:50%; background:conic-gradient(from 45deg, var(--accent), var(--accent-2)); box-shadow:0 0 0 6px rgba(122,227,255,.15)}
+    nav ul{display:flex; gap:20px; list-style:none; margin:0; padding:0}
+    nav a{opacity:.9}
+    nav a:hover{opacity:1}
+    .cta{display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1016; padding:10px 14px; border-radius:12px; font-weight:700; box-shadow:0 8px 20px rgba(122,227,255,.25)}
+
+    /* --- Hero --- */
+    .hero{padding: clamp(40px, 8vw, 120px) 0 32px}
+    .hero h1{font-family:"General Sans", Inter, system-ui, sans-serif; font-weight:800; line-height:1.02; letter-spacing:-.02em; font-size:clamp(36px, 6.4vw, 84px); margin:6px 0 18px}
+    .hero p{max-width: 760px; font-size: clamp(16px, 2.2vw, 22px); color:var(--muted)}
+    .marquee{display:flex; gap:10px; flex-wrap:wrap; margin: 18px 0 28px}
+    .pill{display:inline-grid; place-items:center; padding: 10px 14px; border-radius:999px; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); color:var(--ink); font-weight:600; transform: translateZ(0); transition:transform .2s ease}
+    .pill:hover{transform: translateY(-2px)}
+    .hero-cta{display:flex; gap:12px; margin-top:16px}
+    .ghost{border:1.4px solid rgba(255,255,255,.18); padding:10px 14px; border-radius:12px; font-weight:700; background: transparent}
+    .ghost:focus-visible{outline:3px solid var(--ring)}
+
+    /* --- Services (Toolbox) --- */
+    .section{padding: clamp(48px, 8vw, 96px) 0}
+    .section h2{font-family:"General Sans", Inter, system-ui, sans-serif; font-weight:800; letter-spacing:-.01em; font-size: clamp(28px, 4.6vw, 54px); margin:0 0 18px}
+    .lead{color:var(--muted); font-size:18px; max-width:820px}
+
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap); margin-top:28px}
+    .card{grid-column: span 4; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 22px; position:relative; overflow:hidden}
+    .card h3{margin:0 0 8px; font-size:22px}
+    .card p{color:var(--muted)}
+    .badge{position:absolute; top:16px; right:16px; font-size:12px; font-weight:800; letter-spacing:.06em; padding:6px 8px; border-radius:999px; background: rgba(122,227,255,.12); border:1px solid rgba(122,227,255,.3); color:var(--accent)}
+    .list{margin:14px 0 0; padding:0 0 0 18px; color:var(--muted)}
+    .card:hover{box-shadow:0 20px 60px rgba(0,0,0,.35); transform: translateY(-2px); transition:.25s ease}
+
+    @media (max-width: 960px){ .card{grid-column: span 6} }
+    @media (max-width: 640px){ .card{grid-column: span 12} }
+
+    /* --- Work --- */
+    .work{display:grid; grid-template-columns:repeat(12,1fr); gap:var(--grid-gap); margin-top:28px}
+    .work-item{grid-column: span 6; background: var(--panel); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); overflow:hidden}
+    .work-media{aspect-ratio: 16/10; background:linear-gradient(135deg, rgba(122,227,255,.25), rgba(182,240,156,.18)); display:grid; place-items:center; font-weight:800; color:#0b1016}
+    .work-body{padding:18px}
+    .work-title{display:flex; justify-content:space-between; align-items:center; font-weight:800}
+    .tag{font-size:12px; letter-spacing:.06em; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); padding:6px 8px; border-radius:999px; color:var(--muted)}
+    .metrics{margin-top:8px; color:var(--muted)}
+
+    /* --- About --- */
+    .about{display:grid; grid-template-columns: 1.2fr .8fr; gap:var(--grid-gap); margin-top:20px}
+    .about .panel{background: var(--panel); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding:22px}
+    @media (max-width: 880px){ .about{grid-template-columns: 1fr} }
+
+    /* --- Contact --- */
+    form{display:grid; grid-template-columns: repeat(2,1fr); gap: var(--grid-gap); margin-top: 20px}
+    label{font-size:14px; color:var(--muted)}
+    input, textarea, select{width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0c0f14; color:var(--ink)}
+    textarea{min-height:120px}
+    .full{grid-column:1 / -1}
+    .submit{justify-self:start}
+
+    /* --- Footer --- */
+    footer{padding:36px 0 64px; color:var(--muted)}
+    .foot{display:flex; gap:24px; flex-wrap:wrap; justify-content:space-between; align-items:flex-start}
+    .small{font-size:13px}
+    .social{display:flex; gap:14px}
+
+    /* --- Playful letter tiles (tactile vibe) --- */
+    .tiles{display:flex; gap:8px; margin-top:16px}
+    .tile{inline-size:44px; block-size:44px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); font-weight:900; letter-spacing:.04em; cursor:grab; user-select:none; transition: transform .15s ease}
+    .tile:active{transform:scale(.96)}
+    .tile[data-pop]{animation:pop .25s ease}
+    @keyframes pop{50%{transform:translateY(-6px)} 100%{transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap top" role="navigation" aria-label="Primary">
+      <a class="brand" href="#home" aria-label="Toolbox Studio home">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Toolbox&nbsp;Studio</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#services">Toolbox</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="#contact">Open the toolbox</a>
+    </div>
+  </header>
+
+  <main id="home" class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="h-title">
+      <div class="tiles" aria-hidden="true">
+        <div class="tile">P</div>
+        <div class="tile">L</div>
+        <div class="tile">A</div>
+        <div class="tile">Y</div>
+        <div class="tile">!</div>
+      </div>
+      <h1 id="h-title">Your business toolbox—ready when you are.</h1>
+      <p>
+        From brand to build to growth, we assemble the exact tools your idea needs. Modular, fast, and tactile by design.
+      </p>
+      <div class="marquee" aria-label="Capabilities">
+        <span class="pill">Brand Systems</span>
+        <span class="pill">Web & Product</span>
+        <span class="pill">SEO & Growth</span>
+        <span class="pill">Content</span>
+        <span class="pill">Design Systems</span>
+        <span class="pill">Shopify</span>
+        <span class="pill">Strategy</span>
+      </div>
+      <div class="hero-cta">
+        <a class="cta" href="#contact" aria-label="Open the contact form">Let’s build</a>
+        <a class="ghost" href="#work">Peek inside →</a>
+      </div>
+    </section>
+
+    <!-- SERVICES / TOOLBOX -->
+    <section id="services" class="section" aria-labelledby="s-title">
+      <h2 id="s-title">What’s in the box</h2>
+      <p class="lead">Pick what fits, leave what doesn’t. We combine core tools with the right add‑ons to match your project’s shape and speed.</p>
+
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <div class="badge">01</div>
+          <h3>Web & Digital</h3>
+          <p>Sites, apps, and flows that feel good and move fast—built for accessibility, performance, and conversion.</p>
+          <ul class="list">
+            <li>UI/UX design & prototypes</li>
+            <li>Responsive web & product design</li>
+            <li>Design systems & motion</li>
+          </ul>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="badge">02</div>
+          <h3>Brand & Identity</h3>
+          <p>Names, marks, and visual language that make you unmistakable—consistent from pitch deck to product.</p>
+          <ul class="list">
+            <li>Naming & voice</li>
+            <li>Logos & identity systems</li>
+            <li>Guidelines & templates</li>
+          </ul>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="badge">03</div>
+          <h3>Strategy & Business Design</h3>
+          <p>Clear positioning and practical plans that turn intent into outcomes.</p>
+          <ul class="list">
+            <li>Go‑to‑market & growth planning</li>
+            <li>Audience & opportunity mapping</li>
+            <li>Funnels & conversion strategy</li>
+          </ul>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="badge">04</div>
+          <h3>Social & Content</h3>
+          <p>Campaigns with character and a measurement spine—built to spark connection.</p>
+          <ul class="list">
+            <li>Editorial & content calendars</li>
+            <li>Creative direction & production</li>
+            <li>Analytics & iteration</li>
+          </ul>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="badge">05</div>
+          <h3>Spaces & Experience</h3>
+          <p>Bring your brand into rooms, booths, and events—cohesive from signage to micro‑interactions.</p>
+          <ul class="list">
+            <li>Environmental & event branding</li>
+            <li>Wayfinding & displays</li>
+            <li>Booth & pop‑up kits</li>
+          </ul>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="badge">06</div>
+          <h3>Tools & Systems</h3>
+          <p>Internal platforms and automations that streamline how your team works—without adding friction.</p>
+          <ul class="list">
+            <li>CMS & content workflows</li>
+            <li>Shopify & headless setups</li>
+            <li>Integrations & automation</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section" aria-labelledby="w-title">
+      <h2 id="w-title">Work pulled from the box</h2>
+      <p class="lead">A few modular builds and the ripple effects they made.</p>
+
+      <div class="work">
+        <article class="work-item">
+          <div class="work-media" aria-hidden="true">Project Alpha</div>
+          <div class="work-body">
+            <div class="work-title">
+              <span>Checkout that clicks</span>
+              <span class="tag">E‑commerce</span>
+            </div>
+            <p class="metrics">Rebuilt the purchase flow and tuned performance → fewer drop‑offs and +28% conversions.</p>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-media" aria-hidden="true">Project Beta</div>
+          <div class="work-body">
+            <div class="work-title">
+              <span>Identity toolkit for 5 markets</span>
+              <span class="tag">Brand</span>
+            </div>
+            <p class="metrics">A portable brand system that scaled across regions while staying unmistakable.</p>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-media" aria-hidden="true">Project Gamma</div>
+          <div class="work-body">
+            <div class="work-title">
+              <span>Growth screwdriver</span>
+              <span class="tag">Product</span>
+            </div>
+            <p class="metrics">Sharper UX + SEO pairing that delivered +42% more sign‑ups in 8 weeks.</p>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-media" aria-hidden="true">Project Delta</div>
+          <div class="work-body">
+            <div class="work-title">
+              <span>From pop‑up to staple</span>
+              <span class="tag">Retail</span>
+            </div>
+            <p class="metrics">A joyful identity and custom site that helped a neighborhood favorite grow up.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-labelledby="a-title">
+      <h2 id="a-title">About the studio</h2>
+      <div class="about">
+        <div class="panel">
+          <p>
+            We’re a small, senior team of designers, engineers, and tinkerers who love turning ambitious ideas into useful, beautiful things. From brand to code, we obsess the details and build with care.
+          </p>
+          <p>
+            Our bias: adaptability over rigidity. Sleight over noise. Outcomes over outputs.
+          </p>
+        </div>
+        <div class="panel">
+          <strong>Based in</strong><br/>Lisbon, Portugal<br/><br/>
+          <strong>We team up with</strong>
+          <ul class="list">
+            <li>Creators and early‑stage founders</li>
+            <li>Startups sprinting to product‑market fit</li>
+            <li>Brands scaling into new markets</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-labelledby="c-title">
+      <h2 id="c-title">Let’s open the box</h2>
+      <p class="lead">Tell us what you’re building, fixing, or dreaming up. We’ll reply within one business day with a right‑sized plan.</p>
+
+      <form action="#" method="post" onsubmit="event.preventDefault(); toast('Thanks! We\'ll be in touch shortly.'); this.reset();">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="company">Company / Brand</label>
+          <input id="company" name="company" autocomplete="organization" />
+        </div>
+        <div>
+          <label for="heard">How did you hear about us?</label>
+          <select id="heard" name="heard">
+            <option value="">Select…</option>
+            <option>Referral</option>
+            <option>Search</option>
+            <option>LinkedIn</option>
+            <option>Instagram</option>
+          </select>
+        </div>
+        <div class="full">
+          <label for="msg">Project details</label>
+          <textarea id="msg" name="message" placeholder="A few lines about scope, goals, and timing…" required></textarea>
+        </div>
+        <div class="full submit">
+          <button class="cta" type="submit">Hand me the wrench</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div class="brand"><span class="dot" aria-hidden="true"></span><strong>Toolbox&nbsp;Studio</strong></div>
+        <div class="small">© <span id="y"></span> Toolbox Studio. All rights reserved.</div>
+      </div>
+      <div class="small">
+        HQ: Lisbon, Portugal · hello@example.com
+      </div>
+      <div class="social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Privacy">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Tactile letter tiles — draggable-ish bounce
+    const tiles = document.querySelectorAll('.tile');
+    tiles.forEach(t => {
+      t.addEventListener('pointerdown', e => {
+        t.setPointerCapture(e.pointerId);
+        const startX = e.clientX, startY = e.clientY;
+        const orig = t.getBoundingClientRect();
+        const onMove = (ev)=>{
+          const dx = ev.clientX - startX; const dy = ev.clientY - startY;
+          t.style.transform = `translate(${dx}px, ${dy}px)`;
+        };
+        const onUp = (ev)=>{
+          t.releasePointerCapture(e.pointerId);
+          t.removeEventListener('pointermove', onMove);
+          t.removeEventListener('pointerup', onUp);
+          t.style.transform = '';
+          t.dataset.pop = '1';
+          setTimeout(()=> t.removeAttribute('data-pop'), 260);
+        };
+        t.addEventListener('pointermove', onMove);
+        t.addEventListener('pointerup', onUp);
+      });
+    });
+
+    // Lightweight toast for the form
+    function toast(msg){
+      const el = document.createElement('div');
+      el.textContent = msg;
+      Object.assign(el.style, {
+        position:'fixed', inset:'auto 20px 20px auto', padding:'12px 14px',
+        background:'linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9))',
+        color:'#0b1016', borderRadius:'12px', boxShadow:'0 14px 40px rgba(0,0,0,.3)', zIndex:1000,
+        fontWeight:'700'
+      });
+      document.body.appendChild(el);
+      setTimeout(()=> el.remove(), 2400);
+    }
+  </script>
+</body>
+</html>
