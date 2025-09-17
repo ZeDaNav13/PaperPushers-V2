@@ -10,10 +10,25 @@ header.nav .inner{display:flex;justify-content:space-between;align-items:center;
 .links a:hover{color:#ff6d9a}
 .btn{padding:10px 16px;border-radius:10px;background:linear-gradient(135deg,#ff6d9a,#FDCC2A);color:#111;text-decoration:none;font-weight:900;border:1px solid rgba(0,0,0,.15);box-shadow:0 8px 22px rgba(255,109,154,.25)}
 .btn.ghost{background:transparent;color:#ff6d9a;border:1px solid currentColor;box-shadow:none}
-section{padding:56px 0}
-.hero{text-align:center}
-.hero h1{font-size:clamp(2rem,4vw+1rem,3.2rem);margin:.5em 0;color:#ff6d9a}
-.lead{max-width:70ch;margin:0 auto;color:#444}
+
+/* Spacing like Stripe */
+section {
+  padding: 100px 0;
+}
+.hero {
+  padding: 140px 0 120px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw + 1rem, 4rem);
+  margin-bottom: 1rem;
+}
+.hero .lead {
+  font-size: 1.25rem;
+  color: #555;
+  max-width: 60ch;
+}
+
 .hero-ctas{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:980px){.grid-3{grid-template-columns:repeat(2,1fr)}}
@@ -27,3 +42,14 @@ textarea{min-height:110px;resize:vertical}
 footer{background:#ff6d9a;color:#fff}
 .footer-inner{padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .floating-cta{position:fixed;left:16px;bottom:16px;background:#FDCC2A;color:#111;padding:12px 20px;border-radius:12px;text-decoration:none;font-weight:900;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+
+
+/* Toolbox subtitles */
+.card h3 {
+  margin-bottom: 0.4em;
+}
+.card .subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+}
