@@ -55,19 +55,31 @@ header.nav .inner { display: flex; justify-content: space-between; align-items: 
 #about   { background: #F6BBFD; }
 #contact { background: #fff; }
 
-/* === Cards === */
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-@media (max-width: 980px){ .grid-3 { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 640px){ .grid-3 { grid-template-columns: 1fr; } }
+/* ===== Section padding ===== */
+section {
+  padding: 100px 0;             /* ensure space top/bottom */
+}
+section .container {
+  width: 92%;                   /* prevent edge-to-edge */
+  max-width: 1160px;
+  margin: 0 auto;
+}
 
+/* ===== Card fix ===== */
 .card {
   background: #fff;
   border-radius: 16px;
   padding: 28px 22px;
   box-shadow: 0 12px 28px rgba(0,0,0,.06);
+  height: 100%;                 /* equal height cards */
+  box-sizing: border-box;       /* fix edge stretch */
 }
-.card h3 { margin-bottom: .5em; }
-.card .subtitle { font-size: 1.2rem; line-height: 1.5; }
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;                    /* more breathing space */
+}
+
 
 /* Work cards */
 .work-card img { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; }
@@ -81,6 +93,13 @@ header.nav .inner { display: flex; justify-content: space-between; align-items: 
   border-radius: 12px; font: inherit;
 }
 #contact textarea { min-height: 140px; resize: vertical; }
+
+/* ===== Section transitions ===== */
+#hero    { background: linear-gradient(180deg, #FDCDDD 0%, #FFFF96 100%); }
+#toolbox { background: linear-gradient(180deg, #FFFF96 0%, #83ECA7 100%); }
+#work    { background: linear-gradient(180deg, #83ECA7 0%, #F6BBFD 100%); }
+#about   { background: linear-gradient(180deg, #F6BBFD 0%, #fff 100%); }
+#contact { background: #fff; }
 
 /* Footer */
 .footer-inner { padding: 24px 0; display:flex; justify-content:space-between; flex-wrap:wrap; }
