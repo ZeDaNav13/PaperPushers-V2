@@ -4,14 +4,14 @@ body {
   margin: 0;
   background: #fff7fa;
   color: #101010;
-  line-height: 1.7;          /* more breathing room */
+  line-height: 1.8;               /* more spacing */
   transition: background 1s ease;
-  font-size: 18px;           /* bigger base font */
+  font-size: 20px !important;     /* force bigger base font */
 }
 
-h1 { font-size: 3.4rem; }    /* bigger */
-h2 { font-size: 2.6rem; }
-h3 { font-size: 1.6rem; }
+h1 { font-size: 4rem !important; }  /* hero headline very large */
+h2 { font-size: 3rem !important; }
+h3 { font-size: 1.8rem !important; }
 
 
 .container {
@@ -59,27 +59,30 @@ header.nav .inner {
 
 /* === Hero Section === */
 .hero {
-  padding: 160px 0 120px;    /* more top space */
+  padding: 200px 0 140px !important;  /* big top padding */
   text-align: center;
+  position: relative;
 }
 
 .hero h1 {
-  font-size: 3.6rem;         /* large hero title */
-  margin-bottom: 1.2rem;
+  font-size: 4rem !important;
+  margin-bottom: 1.5rem;
 }
 
 .hero .lead {
-  font-size: 1.6rem;         /* bigger lead text */
+  font-size: 1.8rem !important;
   max-width: 70ch;
-  margin: 0 auto 2rem;
+  margin: 0 auto 3rem;
 }
 
 .hero-ctas {
-  margin-top: 2rem;          /* spacing between text + buttons */
+  margin-top: 2.5rem !important;
   display: flex;
-  gap: 18px;
+  gap: 24px;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;               /* ensure sits below text */
+  z-index: 1;
 }
 
 /* === Section Titles === */
