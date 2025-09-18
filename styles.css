@@ -5,6 +5,7 @@ body {
   background: #fff7fa;
   color: #101010;
   line-height: 1.6;
+  transition: background 1s ease; /* smooth change */
 }
 
 .container {
@@ -293,3 +294,4 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+

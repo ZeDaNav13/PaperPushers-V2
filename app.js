@@ -88,3 +88,27 @@ updateGradient();
 
 // Kick off animation
 moveCTA();
+
+// === Background color changes per section ===
+const sectionColors = {
+  hero: "#fff7fa",
+  toolbox: "#ffe5ed",
+  work: "#e9f7ff",
+  about: "#f0e5ff",
+  contact: "#fff3d1"
+};
+
+const sections = document.querySelectorAll("section");
+
+const bgObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id || "hero";
+      if (sectionColors[id]) {
+        document.body.style.background = sectionColors[id];
+      }
+    }
+  });
+}, { threshold: 0.5 });
+
+sections.forEach(sec => bgObserver.observe(sec));
