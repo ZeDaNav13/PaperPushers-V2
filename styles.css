@@ -4,9 +4,15 @@ body {
   margin: 0;
   background: #fff7fa;
   color: #101010;
-  line-height: 1.6;
+  line-height: 1.7;          /* more breathing room */
   transition: background 1s ease;
+  font-size: 18px;           /* bigger base font */
 }
+
+h1 { font-size: 3.4rem; }    /* bigger */
+h2 { font-size: 2.6rem; }
+h3 { font-size: 1.6rem; }
+
 
 .container {
   width: 92%;
@@ -52,9 +58,29 @@ header.nav .inner {
 .btn.ghost { background: transparent; color: #02594E; border: 2px solid currentColor; }
 
 /* === Hero Section === */
-.hero { padding:120px 0 100px; text-align:center; }
-.hero h1 { font-size:clamp(3rem,6vw+1rem,4.2rem); margin-bottom:1rem; color:#111; }
-.hero .lead { font-size:1.4rem; color:#222; max-width:65ch; margin:0 auto; }
+.hero {
+  padding: 160px 0 120px;    /* more top space */
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.6rem;         /* large hero title */
+  margin-bottom: 1.2rem;
+}
+
+.hero .lead {
+  font-size: 1.6rem;         /* bigger lead text */
+  max-width: 70ch;
+  margin: 0 auto 2rem;
+}
+
+.hero-ctas {
+  margin-top: 2rem;          /* spacing between text + buttons */
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 /* === Section Titles === */
 h2 { font-size:clamp(2.4rem,3vw+1rem,3.2rem); margin-bottom:0.6em; text-align:center; color:#111; }
