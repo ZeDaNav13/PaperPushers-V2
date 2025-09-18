@@ -150,3 +150,6 @@ section .container {
 /* === Animations === */
 .fade-in { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+<link rel="stylesheet" href="styles.css?v=2" />
+<script src="app.js?v=2" defer></script>

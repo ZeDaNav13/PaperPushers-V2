@@ -47,3 +47,6 @@ function move(){
   requestAnimationFrame(move);
 }
 updateGradient(); move();
+
+<link rel="stylesheet" href="styles.css?v=2" />
+<script src="app.js?v=2" defer></script>
