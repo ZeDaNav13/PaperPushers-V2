@@ -20,82 +20,20 @@ const observer = new IntersectionObserver((entries, obs) => {
       } else {
         entry.target.classList.add('visible');
       }
-      obs.unobserve(entry.target); // animate only once
+      obs.unobserve(entry.target);
     }
   });
 }, { threshold: 0.15 });
 
-// Observe all elements with .fade-in and grids with .stagger-parent
 document.querySelectorAll('.fade-in, .stagger-parent').forEach(el => observer.observe(el));
-
-/// === Floating CTA bounce like Windows screensaver ===
-const floatingCTA = document.querySelector('.floating-cta');
-let x = 50, y = 50; // starting position
-let dx = 2, dy = 2; // speed per frame
-
-// Nice gradient pairs to cycle through
-const gradients = [
-  ["#ff6d9a", "#FDCC2A"],
-  ["#6dd5ed", "#2193b0"],
-  ["#ff9966", "#ff5e62"],
-  ["#a18cd1", "#fbc2eb"],
-  ["#00c6ff", "#0072ff"],
-  ["#f7971e", "#ffd200"]
-];
-let currentGradient = 0;
-
-function updateGradient() {
-  const [c1, c2] = gradients[currentGradient];
-  floatingCTA.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
-}
-
-function moveCTA() {
-  const rect = floatingCTA.getBoundingClientRect();
-  const winW = window.innerWidth;
-  const winH = window.innerHeight;
-
-  let bounced = false;
-
-  if (x + rect.width >= winW || x <= 0) {
-    dx *= -1;
-    bounced = true;
-  }
-  if (y + rect.height >= winH || y <= 0) {
-    dy *= -1;
-    bounced = true;
-  }
-
-  x += dx;
-  y += dy;
-
-  floatingCTA.style.left = x + "px";
-  floatingCTA.style.top = y + "px";
-
-  // Change gradient on bounce
-  if (bounced) {
-    currentGradient = (currentGradient + 1) % gradients.length;
-    updateGradient();
-  }
-
-  requestAnimationFrame(moveCTA);
-}
-
-// Initialize absolute positioning and gradient
-floatingCTA.style.position = "fixed";
-floatingCTA.style.left = x + "px";
-floatingCTA.style.top = y + "px";
-updateGradient();
-
-// Kick off animation
-moveCTA();
 
 // === Background color changes per section ===
 const sectionColors = {
-  hero: "#fff7fa",
-  toolbox: "#ffe5ed",
-  work: "#e9f7ff",
-  about: "#f0e5ff",
-  contact: "#fff3d1"
+  hero: "#83ECA7",
+  toolbox: "#FFFF96",
+  work: "#FDCDDD",
+  about: "#02594E",
+  contact: "#F6BBFD"
 };
 
 const sections = document.querySelectorAll("section");
@@ -106,9 +44,66 @@ const bgObserver = new IntersectionObserver((entries) => {
       const id = entry.target.id || "hero";
       if (sectionColors[id]) {
         document.body.style.background = sectionColors[id];
+        // Ensure text contrast
+        if (id === "about") {
+          document.body.style.color = "#fff"; // light on dark teal
+        } else {
+          document.body.style.color = "#111"; // dark on light backgrounds
+        }
       }
     }
   });
 }, { threshold: 0.5 });
 
 sections.forEach(sec => bgObserver.observe(sec));
+
+// === Floating CTA bounce with gradient change ===
+const floatingCTA = document.querySelector('.floating-cta');
+let x = 50, y = 50;
+let dx = 2, dy = 2;
+
+// Gradient pairs from palette
+const gradients = [
+  ["#83ECA7", "#FFFF96"],
+  ["#FDCDDD", "#02594E"],
+  ["#F6BBFD", "#83ECA7"],
+  ["#FFFF96", "#FDCDDD"],
+  ["#02594E", "#F6BBFD"]
+];
+let currentGradient = 0;
+
+function updateGradient() {
+  const [c1, c2] = gradients[currentGradient];
+  floatingCTA.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+  floatingCTA.style.color = (c1 === "#02594E" || c2 === "#02594E") ? "#fff" : "#111";
+}
+
+function moveCTA() {
+  const rect = floatingCTA.getBoundingClientRect();
+  const winW = window.innerWidth;
+  const winH = window.innerHeight;
+
+  let bounced = false;
+
+  if (x + rect.width >= winW || x <= 0) { dx *= -1; bounced = true; }
+  if (y + rect.height >= winH || y <= 0) { dy *= -1; bounced = true; }
+
+  x += dx;
+  y += dy;
+
+  floatingCTA.style.left = x + "px";
+  floatingCTA.style.top = y + "px";
+
+  if (bounced) {
+    currentGradient = (currentGradient + 1) % gradients.length;
+    updateGradient();
+  }
+
+  requestAnimationFrame(moveCTA);
+}
+
+floatingCTA.style.position = "fixed";
+floatingCTA.style.left = x + "px";
+floatingCTA.style.top = y + "px";
+updateGradient();
+moveCTA();
