@@ -1,4 +1,4 @@
-// Footer year
+// Footer year1
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Form handler
