@@ -1,8 +1,8 @@
 // Footer year
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year')?.textContent = new Date().getFullYear();
 
 // Form handler
-document.querySelector('#contact form').addEventListener('submit', e => {
+document.querySelector('#contact form')?.addEventListener('submit', e => {
   e.preventDefault();
   alert('Thanks! We’ll get back to you within 1 business day.');
   e.target.reset();
@@ -25,15 +25,15 @@ const observer = new IntersectionObserver((entries, obs) => {
 },{threshold:0.15});
 document.querySelectorAll('.fade-in,.stagger-parent').forEach(el => observer.observe(el));
 
-// Floating CTA bounce with gradient change
+// Floating CTA bounce + gradient change
 const cta = document.querySelector('.floating-cta');
 let x = 50, y = 50, dx = 2, dy = 2;
 const gradients = [
-  ["#83ECA7", "#FFFF96"],
-  ["#FDCDDD", "#02594E"],
-  ["#F6BBFD", "#83ECA7"],
-  ["#FFFF96", "#FDCDDD"],
-  ["#02594E", "#F6BBFD"]
+  ["#83ECA7", "#FDCDDD"],
+  ["#FFFF96", "#83ECA7"],
+  ["#F6BBFD", "#FDCDDD"],
+  ["#83ECA7", "#F6BBFD"],
+  ["#FFFF96", "#FDCDDD"]
 ];
 let gi = 0;
 function updateGradient(){ const [c1,c2]=gradients[gi]; cta.style.background=`linear-gradient(135deg,${c1},${c2})`; }
