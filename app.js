@@ -27,13 +27,13 @@ const observer = new IntersectionObserver((entries, obs) => {
 
 document.querySelectorAll('.fade-in, .stagger-parent').forEach(el => observer.observe(el));
 
-// === Background color changes per section ===
+// === Background gradients per section ===
 const sectionColors = {
-  hero: "#83ECA7",
-  toolbox: "#FFFF96",
-  work: "#FDCDDD",
-  about: "#02594E",
-  contact: "#F6BBFD"
+  hero: "linear-gradient(135deg, #FDCDDD, #fff)",
+  toolbox: "linear-gradient(145deg, #FFFF96, #fff)",
+  work: "linear-gradient(120deg, #83ECA7, #fff)",
+  about: "linear-gradient(160deg, #F6BBFD, #fff)",
+  contact: "#fff"
 };
 
 const sections = document.querySelectorAll("section");
@@ -44,12 +44,6 @@ const bgObserver = new IntersectionObserver((entries) => {
       const id = entry.target.id || "hero";
       if (sectionColors[id]) {
         document.body.style.background = sectionColors[id];
-        // Ensure text contrast
-        if (id === "about") {
-          document.body.style.color = "#fff"; // light on dark teal
-        } else {
-          document.body.style.color = "#111"; // dark on light backgrounds
-        }
       }
     }
   });
@@ -62,7 +56,6 @@ const floatingCTA = document.querySelector('.floating-cta');
 let x = 50, y = 50;
 let dx = 2, dy = 2;
 
-// Gradient pairs from palette
 const gradients = [
   ["#83ECA7", "#FFFF96"],
   ["#FDCDDD", "#02594E"],
@@ -75,7 +68,7 @@ let currentGradient = 0;
 function updateGradient() {
   const [c1, c2] = gradients[currentGradient];
   floatingCTA.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
-  floatingCTA.style.color = (c1 === "#02594E" || c2 === "#02594E") ? "#fff" : "#111";
+  floatingCTA.style.color = "#02594E"; // deep teal text always
 }
 
 function moveCTA() {
