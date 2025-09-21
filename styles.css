@@ -36,7 +36,7 @@ header.nav .inner, footer .footer-inner {
 .brand .logo { width:40px; height:40px; border-radius:10px; background:#fff; color:var(--teal); display:grid; place-items:center; font-weight:900; }
 
 /* Sections */
-section { padding: 25px 0; position: relative; overflow: hidden; }
+section { padding: 40px 0; position: relative; overflow: hidden; }
 section .container { width: 92%; max-width: 1160px; margin: 0 auto; }
 
 /* Smooth section gradients */
