@@ -1,4 +1,4 @@
-// Footer year1
+// Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Form handler
@@ -29,11 +29,11 @@ document.querySelectorAll('.fade-in,.stagger-parent').forEach(el => observer.obs
 const cta = document.querySelector('.floating-cta');
 let x=50, y=50, dx=2, dy=2;
 const gradients=[
-  ["#83ECA7","#FFFF96"],
-  ["#FDCDDD","#02594E"],
-  ["#F6BBFD","#83ECA7"],
-  ["#FFFF96","#FDCDDD"],
-  ["#02594E","#F6BBFD"]
+  ["#F55353","#FEB139"],
+  ["#FEB139","#F6F54D"],
+  ["#F6F54D","#A91079"],
+  ["#A91079","#F55353"],
+  ["#143F6B","#F6F54D"]
 ];
 let gi=0;
 function updateGradient(){const [c1,c2]=gradients[gi];cta.style.background=`linear-gradient(135deg,${c1},${c2})`;}
