@@ -1,9 +1,9 @@
 :root {
-  --background: #143F6B;
-  --main: #F55353;
-  --secondary: #FEB139;
-  --highlight: #F6F54D;
-  --accent: #A91079;
+  --background: #000000;
+  --main: #CC66DA;
+  --secondary: #9929EA;
+  --highlight: #FAEB92;
+  --accent: #4DFFBE;
 }
 
 /* Global */
