@@ -35,6 +35,19 @@ const gradients=[
   ["#A91079","#F55353"],
   ["#143F6B","#F6F54D"]
 ];
+let gi=0;
+function updateGradient(){const [c1,c2]=gradients[gi];cta.style.background=`linear-gradient(135deg,${c1},${c2})`;}
+function move(){
+  const r=cta.getBoundingClientRect(),W=innerWidth,H=innerHeight;
+  let bounce=false;
+  if(x<=0||x+r.width>=W){dx*=-1;bounce=true;}
+  if(y<=0||y+r.height>=H){dy*=-1;bounce=true;}
+  x+=dx;y+=dy;cta.style.left=x+"px";cta.style.top=y+"px";
+  if(bounce){gi=(gi+1)%gradients.length;updateGradient();}
+  requestAnimationFrame(move);
+}
+updateGradient();move();
+
 let paused = false;
 
 function move(){
