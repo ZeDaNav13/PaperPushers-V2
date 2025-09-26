@@ -35,9 +35,13 @@ const gradients=[
   ["#A91079","#F55353"],
   ["#143F6B","#F6F54D"]
 ];
-let gi=0;
-function updateGradient(){const [c1,c2]=gradients[gi];cta.style.background=`linear-gradient(135deg,${c1},${c2})`;}
+let paused = false;
+
 function move(){
+  if (paused) {
+    requestAnimationFrame(move);
+    return;
+  }
   const r=cta.getBoundingClientRect(),W=innerWidth,H=innerHeight;
   let bounce=false;
   if(x<=0||x+r.width>=W){dx*=-1;bounce=true;}
@@ -46,4 +50,8 @@ function move(){
   if(bounce){gi=(gi+1)%gradients.length;updateGradient();}
   requestAnimationFrame(move);
 }
+
+cta.addEventListener("mouseenter", ()=>paused=true);
+cta.addEventListener("mouseleave", ()=>paused=false);
+
 updateGradient();move();
