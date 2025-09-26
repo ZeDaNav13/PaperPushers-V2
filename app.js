@@ -47,24 +47,3 @@ function move(){
   requestAnimationFrame(move);
 }
 updateGradient();move();
-
-let paused = false;
-
-function move(){
-  if (paused) {
-    requestAnimationFrame(move);
-    return;
-  }
-  const r=cta.getBoundingClientRect(),W=innerWidth,H=innerHeight;
-  let bounce=false;
-  if(x<=0||x+r.width>=W){dx*=-1;bounce=true;}
-  if(y<=0||y+r.height>=H){dy*=-1;bounce=true;}
-  x+=dx;y+=dy;cta.style.left=x+"px";cta.style.top=y+"px";
-  if(bounce){gi=(gi+1)%gradients.length;updateGradient();}
-  requestAnimationFrame(move);
-}
-
-cta.addEventListener("mouseenter", ()=>paused=true);
-cta.addEventListener("mouseleave", ()=>paused=false);
-
-updateGradient();move();
