@@ -6,22 +6,26 @@
   --accent: #4DFFBE;
 }
 
-/* Global */
+/* Global text */
 body {
   font-family: 'Rationale', sans-serif;
   margin: 0;
   color: var(--background);
-  font-size: 26px;   /* was 22px */
-  line-height: 1.8;  /* slightly more breathing space */
+  font-size: 26px;   /* increased from 22px */
+  line-height: 1.8;
 }
-h1, h2, h3 { font-family: 'Silkscreen', cursive; }
-h1 { font-size: 3.4rem; }
-h2 { font-size: 2.6rem; }
-h3 { font-size: 1.6rem; }
 
-/* Paragraphs and leads */
-p, .lead, .subtitle {
-  font-size: 1.25em;  /* scale relative to body size */
+/* Headings (Silkscreen) */
+h1, h2, h3 { font-family: 'Silkscreen', cursive; }
+h1 { font-size: 4rem; }    /* was 3.4rem */
+h2 { font-size: 3rem; }    /* was 2.6rem */
+h3 { font-size: 2rem; }    /* was 1.6rem */
+
+/* Paragraphs and highlighted text */
+p,
+.lead,
+.subtitle {
+  font-size: 1.2em;     /* scale relative to body */
   line-height: 1.8;
 }
 
