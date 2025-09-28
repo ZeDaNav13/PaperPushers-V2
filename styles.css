@@ -58,7 +58,7 @@ section .container { width: 92%; max-width: 1160px; margin: 0 auto; }
 
 /* Smooth section gradients */
 #hero    { background: linear-gradient(180deg, var(--main) 0%, var(--secondary) 80%, var(--secondary) 100%);}
-#toolbox { background: linear-gradient(180deg, var(--secondary) 0%, var(--secondary) 20%, var(--highlight) 100%);}
+#toolbox { background: linear-gradient(180deg, var(--secondary) 0%, var(--highlight) 20%, var(--accent) 100%);}
 #work    { background: linear-gradient(180deg, var(--highlight) 0%, var(--accent) 100%); }
 #about   { background: linear-gradient(180deg, var(--accent) 0%, #fff 100%); }
 #contact { background: #fff; }
