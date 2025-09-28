@@ -11,13 +11,19 @@ body {
   font-family: 'Rationale', sans-serif;
   margin: 0;
   color: var(--background);
-  font-size: 22px;
-  line-height: 1.7;
+  font-size: 26px;   /* was 22px */
+  line-height: 1.8;  /* slightly more breathing space */
 }
 h1, h2, h3 { font-family: 'Silkscreen', cursive; }
 h1 { font-size: 3.4rem; }
 h2 { font-size: 2.6rem; }
 h3 { font-size: 1.6rem; }
+
+/* Paragraphs and leads */
+p, .lead, .subtitle {
+  font-size: 1.25em;  /* scale relative to body size */
+  line-height: 1.8;
+}
 
 /* Header / Footer */
 header.nav, footer {
@@ -97,6 +103,7 @@ main {
 
 /* Buttons */
 .btn {
+  font-size: 1.1em;
   padding: 12px 20px;
   border-radius: 12px;
   font-weight: 900;
@@ -130,6 +137,7 @@ main {
 #contact .card { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
 #contact .fields { display: grid; gap: 16px; }
 #contact input, #contact textarea {
+  font-size: 1.1em;
   width: 100%;
   padding: 14px;
   border: 1px solid rgba(0,0,0,.15);
